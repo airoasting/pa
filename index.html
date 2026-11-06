@@ -1525,6 +1525,10 @@
   .slide[style*="--bs"] > .rs-nav { margin-top: 0 !important; }   /* 본문 이동(--bs)에서 내비는 제외 */
   .rs-nav span { box-sizing: border-box; width: 184px; height: 24px; padding: 0; border-radius: 999px; border: 1px solid #575757; display: inline-flex; align-items: center; justify-content: center;   /* 세 필 같은 폭 */
     font-size: 12px; font-weight: 700; color: #7f878e; white-space: nowrap; }
+  /* 처음으로 버튼(.home-go, 2026-11-06): 실습 장 오른쪽 위(y 20~52, 내비 필과 가운데 맞춤). 누르면 첫 장(실습 자료)으로 */
+  .home-go { right: 76px; top: 20px; height: 32px; box-sizing: border-box; padding: 0 16px; border-radius: 999px; border: 1.5px solid #b39e84; background: #221d16; color: #f6f6f6; font-size: 14px; font-weight: 800; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap; z-index: 5; }
+  .home-go i { font-style: normal; color: #b39e84; }
+  .home-go:hover { background: #8a7660; border-color: #8a7660; } .home-go:hover i { color: #fff; }
   .rs-nav span.on { background: #8a7660; border-color: #8a7660; color: #fff; }   /* 그린 필 글자는 흰색(2026-10-26 사용자 지정) */
   /* 이유 세 가지(.rs) */
   .rs-card { top: 220px; width: 352px; height: 430px; box-sizing: border-box; padding: 36px 32px; border-radius: 20px; background: #141414; border: 1px solid #4a4a4a; display: flex; flex-direction: column; justify-content: center; }
@@ -2116,6 +2120,9 @@
   .hrq-go i { font-style: normal; height: 26px; padding: 0 12px; border-radius: 999px; background: #8a7660; color: #fff; font-size: 13px; font-weight: 800; display: inline-flex; align-items: center; white-space: nowrap; }
   .hrq-go b { font-size: 21px; font-weight: 800; color: #f6f6f6; letter-spacing: -.02em; white-space: nowrap; }
   .hrq-go:hover { filter: brightness(1.12); }
+  /* 실습 자료 장(.lk, 2026-11-06): 실습 2 카드는 필 둘(프롬프트, 엑셀)을 아래로 쌓음 */
+  .lk .hrq-go + .hrq-go { margin-top: 12px; }
+  .lk a.hrq-go { text-decoration: none; }
   /* 실습 1 주제 장(.q1, 2026-11-01): 내용을 비우고 미래 예측 질문 하나만 가운데에. 아래 답 형식 필(y 520). 태그 y 208, 키커 y 262, 질문 y 318(두 줄 64px) */
   .q1-tag { left: 76px; top: 209px; width: 1128px; margin: 0; text-align: center; }   /* 태그·질문·답 형식 묶음(y 209~511)을 화면 세로 가운데(360)에 맞춤. 페르소나 줄은 사용자 요청으로 지움 */
   .q1-tag { font-size: 15px; font-weight: 800; letter-spacing: .04em; color: #b39e84; }
@@ -2320,7 +2327,16 @@
 
   <!-- 1. 표지: 원본 배경(남색 그라디언트 + 하단 광선 + 좌측 부채꼴 선)을 SVG로 다시 그렸다.
        맨 위 노이즈 층은 어두운 그라디언트의 밴딩을 없애는 디더링이다. -->
-  <section class="slide cover active" aria-label="표지">
+  <!-- 실습 자료 장(2026-11-06 사용자 요청): 표지 앞 첫 장. 카드 셋은 .hrq-card.cond를 재사용(x 76·460·844). 필을 누르면 실습 장으로 가고, 엑셀은 내려받음 -->
+  <section class="slide dark lk active" id="labs" aria-label="실습 자료: 실습 1 프롬프트, 실습 2 프롬프트와 엑셀 파일, 실습 3 프롬프트">
+    <div class="abs head-bar oy-bar" aria-hidden="true"></div>
+    <h2 class="abs head-title">오늘 실습에 쓸 프롬프트와 데이터</h2>
+    <div class="abs hrq-card cond" style="left:76px"><span class="hrq-n">실습 1 · AI와 토론하기</span><p class="hrq-big">멀티 페르소나 토론</p><p class="hrq-desc">6개월 뒤 코스피 방향을 여러 관점으로 토론하고 교차 검증함</p><div class="hrq-go" data-goto="lab1" role="link" tabindex="0"><i>프롬프트</i><b>바로 가기 →</b></div></div>
+    <div class="abs hrq-card cond" style="left:460px"><span class="hrq-n">실습 2 · AI에게 맡기기</span><p class="hrq-big">대시보드·온톨로지</p><p class="hrq-desc">PA테크 인사 데이터로 연구개발본부 이직 원인을 분석함</p><div class="hrq-go" data-goto="lab2" role="link" tabindex="0"><i>프롬프트</i><b>바로 가기 →</b></div><a class="hrq-go lk-dl" href="data/PA%ED%85%8C%ED%81%AC%20%EC%9D%B8%EC%82%AC%20%EB%8D%B0%EC%9D%B4%ED%84%B0%28%EA%B0%80%EC%83%81%29.xlsx" download="PA테크 인사 데이터(가상).xlsx" aria-label="실습 2 엑셀 파일 다운로드"><i>엑셀</i><b>데이터 내려받기 ↓</b></a></div>
+    <div class="abs hrq-card cond" style="left:844px"><span class="hrq-n">실습 3 · AI 채용하기</span><p class="hrq-big">에이전트 채용</p><p class="hrq-desc">실습 2 채팅에 이어 시야와 차원을 넓히는 질문을 던짐</p><div class="hrq-go" data-goto="lab3" role="link" tabindex="0"><i>프롬프트</i><b>바로 가기 →</b></div></div>
+  </section>
+
+  <section class="slide cover" aria-label="표지">
     <div class="abs oy-symbol hr-badge" role="img" aria-label="PA | AI Connect 2026 로고"><img src="assets/logo-paconnect-vertical.png" alt=""></div>
     <p class="abs cover-logo hr-wm hr-wm-theme">PA | AI CONNECT 2026<span>: 데이터로 여는 HR의 다음 단계</span></p>
     <h1 class="abs"><span>HR이 설계하는 에이전트 리더십</span></h1>
@@ -2589,12 +2605,13 @@
     <div class="abs pw-stage hot" data-step="1" style="left:1024px"><b>4</b><h4>결정</h4><span>사람이 판단하기</span></div>
     <div class="abs pw-row" data-step="2" style="top:340px"><div class="pw-rl"><span class="pw-tag">01 AI와 토론하기</span><h4>실습 1 · 멀티 페르소나</h4><em>25분</em></div><div class="pw-bar" style="left:556px;width:180px">토론과 교차 검증</div></div>
     <div class="abs pw-row" data-step="3" style="top:432px"><div class="pw-rl"><span class="pw-tag">02 AI에게 맡기기</span><h4>실습 2 · 대시보드·온톨로지</h4><em>35분</em></div><div class="pw-bar" style="left:752px;width:180px">분석을 맡기기</div></div>
-    <div class="abs pw-row" data-step="4" style="top:524px"><div class="pw-rl"><span class="pw-tag">03 AI 채용하기</span><h4>실습 3 · 에이전트 채용</h4><em>30분</em></div><div class="pw-bar hot" style="left:752px;width:376px">채용하고 권한을 결재하기</div></div>
+    <div class="abs pw-row" data-step="4" style="top:524px"><div class="pw-rl"><span class="pw-tag">03 AI 채용하기</span><h4>실습 3 · 에이전트 채용</h4><em>30분</em></div><div class="pw-bar hot" style="left:752px;width:376px">에이전트 채용과 권한 설계</div></div>
   </section>
 
   <!-- 실습 1. 멀티 페르소나: 대화에서 토론으로: 단계 카드 셋(x 76·464·852, y 220~520) + 만드는 것·느낄 것(y 544~650). 프롬프트 원문은 QR 키트 페이지에 둔다 -->
   <section class="slide dark q1" id="lab1" data-gap="900" aria-label="실습 1 토론 주제(시장 예측): 6개월 뒤(2027년 5월) 코스피는 지금보다 오를까, 내릴까? 방향, 확률, 지수 범위, 근거 3개로 답함. 투자 권유가 아닌 토론 실습">
     <div class="abs rs-nav" aria-hidden="true"><span class="on">실습 1 · AI와 토론하기</span><span>실습 2 · AI에게 맡기기</span><span>실습 3 · AI 채용하기</span></div>
+    <div class="abs home-go" data-goto="labs" role="link" tabindex="0" aria-label="첫 장 실습 자료로 돌아가기"><i aria-hidden="true">←</i> 처음으로</div>
     <p class="abs q1-tag" data-step="1">실습 1 · 멀티 페르소나 토론 주제</p>
     <h2 class="abs q1-q" data-step="2">6개월 뒤(2027년 5월) 코스피는<br>지금보다 <em>오를까, 내릴까?</em></h2>
     <p class="abs q1-ans" data-step="3"><span>방향</span><span>확률(%)</span><span>지수 범위</span><span>근거 3개</span></p>
@@ -2697,6 +2714,7 @@
   <!-- 실습 2-1 장(2026-11-01 사용자 요청): 엑셀 다운로드 + 프롬프트 1(탐색적 데이터 분석과 대시보드) -->
   <section class="slide dark p2p" id="lab2" data-gap="700" aria-label="실습 2-1: 이 엑셀 파일을 탐색적 데이터 분석하고, __________ 스타일의 인터랙티브 대시보드를 아티팩트나 사이트로 만들어 줘. 블랙 생성자, 레드 비평가, 골드 CEO가 10점 만점 평가로 9.5점 이상까지 개선. 엑셀 파일 다운로드">
     <div class="abs rs-nav" aria-hidden="true"><span>실습 1 · AI와 토론하기</span><span class="on">실습 2 · AI에게 맡기기</span><span>실습 3 · AI 채용하기</span></div>
+    <div class="abs home-go" data-goto="labs" role="link" tabindex="0" aria-label="첫 장 실습 자료로 돌아가기"><i aria-hidden="true">←</i> 처음으로</div>
     <h2 class="abs head-title">실습 2-1 · 탐색적 데이터 분석과 대시보드</h2>
     <div class="abs p2p-card" data-step="1"><i>프롬프트 1</i><button class="p2p-copy" type="button" aria-label="프롬프트 복사"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><span>복사</span></button><q>이 엑셀 파일을 <mark>탐색적 데이터 분석</mark>하고, <mark>__________</mark> 스타일의 인터랙티브 대시보드를 아티팩트나 사이트로 만들어 줘.<br><br><span class="per">블랙, 너는 생성자야. 레드, 너는 비평가야. 골드, 너는 CEO야. 블랙이 대시보드를 만들고, 레드와 골드가 10점 만점으로 평가해서 9.5점 이상이 될 때까지 개선해 줘.</span></q></div>
     <p class="abs p2p-dl" data-step="2"><a class="ext-pill" href="data/PA%ED%85%8C%ED%81%AC%20%EC%9D%B8%EC%82%AC%20%EB%8D%B0%EC%9D%B4%ED%84%B0%28%EA%B0%80%EC%83%81%29.xlsx" download="PA테크 인사 데이터(가상).xlsx" aria-label="PA테크 인사 데이터 엑셀 파일 다운로드">엑셀 파일 다운로드 <i aria-hidden="true">↓</i></a></p>
@@ -2705,6 +2723,7 @@
   <!-- 실습 2-2 장(2026-11-01 사용자 요청): 프롬프트 2(온톨로지 분석과 지식 그래프로 R&D 퇴사 원인) -->
   <section class="slide dark p2p" data-gap="700" aria-label="실습 2-2: 엑셀 데이터를 온톨로지 분석하고, 지식 그래프를 그려서 연구개발본부 퇴사 원인을 파악해 줘. 블랙 생성자, 레드 비평가, 골드 CEO가 10점 만점 평가로 9.5점 이상까지 개선">
     <div class="abs rs-nav" aria-hidden="true"><span>실습 1 · AI와 토론하기</span><span class="on">실습 2 · AI에게 맡기기</span><span>실습 3 · AI 채용하기</span></div>
+    <div class="abs home-go" data-goto="labs" role="link" tabindex="0" aria-label="첫 장 실습 자료로 돌아가기"><i aria-hidden="true">←</i> 처음으로</div>
     <h2 class="abs head-title">실습 2-2 · 온톨로지와 지식 그래프로 퇴사 원인 규명</h2>
     <div class="abs p2p-card" data-step="1"><i>프롬프트 2</i><button class="p2p-copy" type="button" aria-label="프롬프트 복사"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><span>복사</span></button><q>엑셀 데이터를 <mark>온톨로지</mark> 분석하고, <mark>지식 그래프</mark>를 그려서 연구개발본부 퇴사 원인을 파악해 줘.<br><br><span class="per">블랙, 너는 생성자야. 레드, 너는 비평가야. 골드, 너는 CEO야. 블랙이 지식 그래프를 그려 원인을 찾고, 레드와 골드가 10점 만점으로 평가해서 9.5점 이상이 될 때까지 개선해 줘.</span></q></div>
   </section>
@@ -2725,6 +2744,7 @@
   <!-- 실습 3(2026-11-01 재설계 3): 실습 2 채팅에서 이어서 시야 프롬프트(다분야 전문가 대안)로 넓힌 뒤 차원 프롬프트(목표 수준 운영 방식)로 묶음. 시야=Rieseberg의 Range, 차원=Altitude로 대응. 문장은 Rieseberg 글의 Altitude·Range 예시를 옮김. 통제(권한 결재)는 결정 장이 맡음 -->
   <section class="slide dark pw-lab" id="lab3" data-gap="900" aria-label="실습 3. 실습 2 채팅에서 이어서 시야 프롬프트로 다분야 전문가의 대안을 넓히고, 차원 프롬프트로 목표 수준의 운영 방식을 설계함">
     <div class="abs rs-nav" aria-hidden="true"><span>실습 1 · AI와 토론하기</span><span>실습 2 · AI에게 맡기기</span><span class="on">실습 3 · AI 채용하기</span></div>
+    <div class="abs home-go" data-goto="labs" role="link" tabindex="0" aria-label="첫 장 실습 자료로 돌아가기"><i aria-hidden="true">←</i> 처음으로</div>
     <h2 class="abs head-title">실습 3 · 시야를 넓히고 차원을 높이는 질문을 던져 봄</h2>
     <div class="abs p2p-card p3c" data-step="1" style="top:206px"><i>시야 · PERSPECTIVE</i><button class="p2p-copy" type="button" aria-label="프롬프트 복사"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><span>복사</span></button><q>이 문제를 가장 잘 풀 수 있는 다른 분야 전문가 세 명을 골라, 그들이 실제로 쓰는 방법론으로 각자 분석해서 대안을 제시해 줘.</q></div><div class="abs p2p-card p3c" data-step="2" style="top:434px"><i>차원 · LEVEL</i><button class="p2p-copy" type="button" aria-label="프롬프트 복사"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><span>복사</span></button><q>우리 목표는 연구개발본부 핵심 인재를 지켜서 신제품을 제때 출시하는 거야. 이 목표를 달성하기 위해 핵심 인재 이탈을 막는 운영 방식을 설계하고 지금 방식과 한 분기 나란히 돌려 볼 계획까지 수립해 줘.</q></div>
     <p class="abs footnote">질문 출처: Felix Rieseberg, 「How to be more ambitious: A tutorial for humans with models」(felixrieseberg.com, 2026.10.13)의 Range·Altitude 예시를 HR 상황에 맞게 옮김</p>
@@ -2873,7 +2893,7 @@
     stopMorph();
     i = next;
     slides.forEach((el, k) => el.classList.toggle('active', k === i));
-    if (i === 0) replayCover();
+    if (slides[i] === cover) replayCover();
     stopSeq();
     if (slides[i].querySelector('[data-step]')) playSeq(slides[i], next < prevIndex, morphPts ? MORPH_DUR - 500 : 0);
     if (morphPts) morphEras(morphPts, slides[next]);
@@ -2890,7 +2910,7 @@
     history.replaceState(null, '', `#${i + 1}`);
   }
   // 표지 등장 연출을 처음부터 다시 재생한다
-  const cover = slides[0];
+  const cover = deck.querySelector('.slide.cover');
   function replayCover() {
     cover.classList.remove('play');
     void cover.offsetWidth;
@@ -3062,7 +3082,7 @@
   document.getElementById('nextBtn').addEventListener('click', e => { e.stopPropagation(); next(); e.currentTarget.blur(); });
   fsBtn.addEventListener('click', e => { e.stopPropagation(); toggleFullscreen(); fsBtn.blur(); });
   // 외부 링크 필(.ext-pill): 장 넘김 클릭으로 번지지 않게 막고 링크만 연다
-  document.querySelectorAll('.ext-pill').forEach(a => a.addEventListener('click', e => e.stopPropagation()));
+  document.querySelectorAll('.ext-pill, .lk-dl').forEach(a => a.addEventListener('click', e => e.stopPropagation()));
   // 프롬프트 복사 버튼(.p2p-copy): 카드의 프롬프트 문장을 복사하고 2초간 "복사됨" 표시. 장 넘김으로 번지지 않게 막음
   document.querySelectorAll('.p2p-copy').forEach(b => b.addEventListener('click', async e => {
     e.stopPropagation();
